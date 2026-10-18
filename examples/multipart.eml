@@ -1,0 +1,17 @@
+From: sender@example.com
+To: list@example.com
+Subject: Multipart test
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="----=_Part_12345.67890"
+
+This is a multi-part message in MIME format.
+------=_Part_12345.67890
+Content-Type: text/plain; charset="utf-8"
+
+Plain text part. Visit http://example.org for more.
+------=_Part_12345.67890
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
+
+PGh0bWw+PGJvZHk+SGVsbG88L2JvZHk+PC9odG1sPg==
+------=_Part_12345.67890--

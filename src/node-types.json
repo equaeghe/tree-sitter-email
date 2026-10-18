@@ -1,0 +1,365 @@
+[
+  {
+    "type": "body",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "blank_line",
+          "named": true
+        },
+        {
+          "type": "mime_part",
+          "named": true
+        },
+        {
+          "type": "plain_line",
+          "named": true
+        },
+        {
+          "type": "quoted_line",
+          "named": true
+        },
+        {
+          "type": "signature",
+          "named": true
+        },
+        {
+          "type": "verbatim",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "comment",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "escaped_char",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "envelope_line",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "header",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "header_name",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "header_value",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "header_value",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "address",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "escaped_char",
+          "named": true
+        },
+        {
+          "type": "quoted_string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "mime_boundary",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "mime_part",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "header",
+          "named": true
+        },
+        {
+          "type": "mime_boundary",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "plain_line",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "email",
+          "named": true
+        },
+        {
+          "type": "url",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "quote_content",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "email",
+          "named": true
+        },
+        {
+          "type": "url",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "quoted_line",
+    "named": true,
+    "fields": {
+      "content": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "quote_content",
+            "named": true
+          }
+        ]
+      },
+      "marker": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "quote_marker",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "quoted_string",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "escaped_char",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "signature",
+    "named": true,
+    "fields": {
+      "marker": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "signature_marker",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "signature_line",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "signature_line",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "email",
+          "named": true
+        },
+        {
+          "type": "url",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "root": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "body",
+          "named": true
+        },
+        {
+          "type": "envelope_line",
+          "named": true
+        },
+        {
+          "type": "header",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "verbatim",
+    "named": true,
+    "fields": {
+      "marker": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "verbatim_marker",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "verbatim_line",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "verbatim_line",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "\"",
+    "named": false
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": "address",
+    "named": true
+  },
+  {
+    "type": "blank_line",
+    "named": true
+  },
+  {
+    "type": "email",
+    "named": true
+  },
+  {
+    "type": "escaped_char",
+    "named": true
+  },
+  {
+    "type": "header_name",
+    "named": true
+  },
+  {
+    "type": "quote_marker",
+    "named": true
+  },
+  {
+    "type": "signature_marker",
+    "named": true
+  },
+  {
+    "type": "url",
+    "named": true
+  },
+  {
+    "type": "verbatim_marker",
+    "named": true
+  }
+]

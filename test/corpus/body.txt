@@ -1,0 +1,133 @@
+================================================================================
+Plain paragraphs separated by a blank line
+================================================================================
+From: a@b.com
+
+Hello there
+
+Second paragraph.
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (header name: (header_name) value: (header_value))
+  (body
+    (blank_line)
+    (plain_line)
+    (blank_line)
+    (plain_line)))
+
+================================================================================
+URL and bare email address inline in the body
+================================================================================
+From: a@b.com
+
+See https://example.com/x for details, or email me@example.com.
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (header name: (header_name) value: (header_value))
+  (body
+    (blank_line)
+    (plain_line
+      (url)
+      (email))))
+
+================================================================================
+Reply-quoted lines
+================================================================================
+From: a@b.com
+
+> quoted once
+>> quoted twice
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (header name: (header_name) value: (header_value))
+  (body
+    (blank_line)
+    (quoted_line marker: (quote_marker) content: (quote_content))
+    (quoted_line marker: (quote_marker) content: (quote_content))))
+
+================================================================================
+Signature block runs to end of file
+================================================================================
+From: a@b.com
+
+Body.
+
+-- 
+Alice
+https://example.com
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (header name: (header_name) value: (header_value))
+  (body
+    (blank_line)
+    (plain_line)
+    (blank_line)
+    (signature
+      marker: (signature_marker)
+      (signature_line)
+      (signature_line
+        (url)))))
+
+================================================================================
+MIME multipart: boundary lines restart header parsing
+================================================================================
+From: a@b.com
+Content-Type: multipart/mixed; boundary="X"
+
+preamble
+--X
+Content-Type: text/plain
+
+part one
+--X--
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (header name: (header_name) value: (header_value))
+  (header
+    name: (header_name)
+    value: (header_value
+      (quoted_string)))
+  (body
+    (blank_line)
+    (plain_line)
+    (mime_part
+      (mime_boundary)
+      (header name: (header_name) value: (header_value)))
+    (blank_line)
+    (plain_line)
+    (mime_part
+      (mime_boundary))))
+
+================================================================================
+Verbatim block is never reinterpreted as quoting
+================================================================================
+From: a@b.com
+
+#v+
+> not a quote
+-- not a signature
+#v-
+back to normal
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (header name: (header_name) value: (header_value))
+  (body
+    (blank_line)
+    (verbatim
+      marker: (verbatim_marker)
+      (verbatim_line)
+      (verbatim_line)
+      marker: (verbatim_marker))
+    (plain_line)))

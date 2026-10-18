@@ -1,0 +1,8 @@
+From: a@b.com
+Subject: verbatim
+
+#v+
+this is   verbatim    text
+> not a quote here
+#v-
+back to normal

@@ -1,0 +1,129 @@
+================================================================================
+Plain header, no substructure
+================================================================================
+From: a@b.com
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (header name: (header_name) value: (header_value)))
+
+================================================================================
+Multiple headers in a row (no blank line consumed early)
+================================================================================
+From: a@b.com
+To: c@d.com
+Subject: hi
+
+body text
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (header name: (header_name) value: (header_value))
+  (header name: (header_name) value: (header_value))
+  (header name: (header_name) value: (header_value))
+  (body
+    (blank_line)
+    (plain_line)))
+
+================================================================================
+Folded (continuation) header value
+================================================================================
+X-Custom: some
+ folded
+ value
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (header name: (header_name) value: (header_value)))
+
+================================================================================
+Quoted display name and angle-bracket address
+================================================================================
+To: "Alice" <a@b.com>
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (header
+    name: (header_name)
+    value: (header_value
+      (quoted_string)
+      (address))))
+
+================================================================================
+Escaped quote inside quoted string
+================================================================================
+To: "Bob \"The Builder\"" <bob@x.com>
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (header
+    name: (header_name)
+    value: (header_value
+      (quoted_string
+        (escaped_char)
+        (escaped_char))
+      (address))))
+
+================================================================================
+Parenthetical comment in a structured header
+================================================================================
+Cc: dev-team@example.com (Dev Team)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (header
+    name: (header_name)
+    value: (header_value
+      (comment))))
+
+================================================================================
+Subject header: plain value (see README "Known limitation" -- quoted-string
+substructure inside Subject doesn't currently get parsed out; the whole
+value, quotes included, is captured as flat text instead of erroring)
+================================================================================
+Subject: Re: "Quarterly Report"
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (header
+    name: (header_name)
+    value: (header_value)))
+
+================================================================================
+Header name is case-insensitive
+================================================================================
+subject: lowercase
+FROM: shouting@example.com
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (header name: (header_name) value: (header_value))
+  (header name: (header_name) value: (header_value)))
+
+================================================================================
+Unknown header gets plain (non-structured) value parsing
+================================================================================
+X-Mailer-Notes: (not a comment) <not-an-address>
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (header name: (header_name) value: (header_value)))
+
+================================================================================
+Empty header value
+================================================================================
+X-Empty:
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (header name: (header_name)))

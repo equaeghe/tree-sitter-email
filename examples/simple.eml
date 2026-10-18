@@ -1,0 +1,26 @@
+From: "Alice Example" <alice@example.com>
+To: bob@example.org, "Carol Q. Smith" <carol@example.net>
+Cc: dev-team@example.com (Dev Team)
+Subject: Re: Quarterly report [DRAFT]
+Date: Tue, 22 Sep 2026 10:15:00 -0700
+Message-Id: <abc123@example.com>
+Content-Type: text/plain; charset="utf-8"
+X-Mailer: CustomClient 3.1
+X-Custom-Header: some
+ folded
+ value here
+
+Hey Bob,
+
+See https://example.com/reports/q3.pdf for the numbers, or just email
+me at alice@example.com if you have questions.
+
+> On Sep 21, 2026, Bob wrote:
+> > Original question here
+> > that spans two lines
+> Let's sync tomorrow.
+
+-- 
+Alice Example
+Example Corp
+https://example.com
