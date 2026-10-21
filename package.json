@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-email",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Tree-sitter grammar for RFC 5322 email / MIME messages (.eml), based on Vim's mail.vim and KDE's email.xml syntax definitions",
   "main": "bindings/node",
   "license": "MIT",
@@ -14,7 +14,13 @@
   "tree-sitter": [
     {
       "scope": "source.email",
-      "file-types": ["eml", "email", "emlx", "mbox", "mbx"],
+      "file-types": [
+        "eml",
+        "email",
+        "emlx",
+        "mbox",
+        "mbx"
+      ],
       "injection-regex": "^(eml|email|mime)$"
     }
   ]

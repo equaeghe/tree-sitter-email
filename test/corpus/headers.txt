@@ -127,3 +127,51 @@ X-Empty:
 
 (source_file
   (header name: (header_name)))
+
+================================================================================
+Comment that wraps onto a folded continuation line stays one node
+================================================================================
+Received: from a (version=TLS1_2,
+ cipher=TLS_AES_256) id 1
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (header
+    name: (header_name)
+    value: (header_value
+      (comment))))
+
+================================================================================
+Quoted string that wraps onto a folded continuation line stays one node
+================================================================================
+To: "Roe,
+ Richard" <r@example.org>
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (header
+    name: (header_name)
+    value: (header_value
+      (quoted_string)
+      (address))))
+
+================================================================================
+Header names with underscores and dots do not end the header block
+================================================================================
+msip_labels:
+X-Weird.Name_1: value
+MIME-Version: 1.0
+
+body
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (header name: (header_name))
+  (header name: (header_name) value: (header_value))
+  (header name: (header_name) value: (header_value))
+  (body
+    (blank_line)
+    (plain_line)))

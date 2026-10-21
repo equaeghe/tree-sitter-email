@@ -1,0 +1,20 @@
+Received: from AM9PR09MB4868.eurprd09.prod.outlook.com (2603:10a6:20b:2d8::19)
+ by PA3PR09MB8335.eurprd09.prod.outlook.com (2603:10a6:102:4b8::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.522.13; Wed, 14 Oct
+ 2026 14:38:41 +0000
+From: "Doe, Jane" <jane.doe@example.org>
+To: "Roe, Richard" <richard.roe@example.org>
+Subject: Test
+Date: Wed, 14 Oct 2026 16:38:41 +0200
+X-MS-Exchange-Organization-RecordReviewCfmType: 0
+msip_labels:
+x-ms-publictraffictype: Email
+authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=example.org;
+X-Weird.Name_1: value
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+body

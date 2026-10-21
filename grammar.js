@@ -154,7 +154,11 @@ module.exports = grammar({
     // its value is left as plain folded text (Kate's "Other Header" /
     // header-content context).
     _other_header: $ => seq(
-      field('name', alias(token(prec(1, /[A-Za-z][A-Za-z0-9-]*:/)), $.header_name)),
+      // RFC 5322 allows any printable ASCII except ':' in a field name, and
+      // real mail uses underscores and dots (e.g. Outlook's `msip_labels:`).
+      // A name the grammar rejects doesn't just lose its own colour: the
+      // parser leaves the header block and treats every later line as body.
+      field('name', alias(token(prec(1, /[A-Za-z_][A-Za-z0-9_.-]*:/)), $.header_name)),
       optional(field('value', alias($._other_value, $.header_value))),
     ),
     _other_value: $ => repeat1($._other_piece),
@@ -180,14 +184,17 @@ module.exports = grammar({
 
     quoted_string: $ => prec.right(seq(
       '"',
-      repeat(choice($.escaped_char, token(prec(-1, /[^"\\\r\n]+/)))),
+      repeat(choice($.escaped_char, $._fold, token(prec(-1, /[^"\\\r\n]+/)))),
       optional('"'),
     )),
 
     // Parenthetical comments, RFC 5322 style, may nest.
+    // `_fold` is allowed inside comments and quoted strings so a node that
+    // wraps onto a continuation line (very common in `Received:`) keeps its
+    // span, and therefore its highlighting, across the line break.
     comment: $ => prec.right(seq(
       '(',
-      repeat(choice($.comment, $.escaped_char, token(prec(3, /[^()\\\r\n]+/)))),
+      repeat(choice($.comment, $.escaped_char, $._fold, token(prec(3, /[^()\\\r\n]+/)))),
       optional(')'),
     )),
 
